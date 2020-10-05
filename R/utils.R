@@ -16,8 +16,8 @@ adjMat = function(graph, p) {
 }
 
 CompLogML <- function(D, Nmissing, delta) {
-  Nmissing <- Nmissing + D[1] + delta
-  lgamma(Nmissing) + sum(lgamma(D[2:length(D)] + delta)) - length(D) * (lgamma(delta))
+  Nmissing <- Nmissing + D[1] + delta[1]
+  lgamma(Nmissing) + sum(lgamma(D[2:length(D)] + delta[2:length(D)])) - sum(lgamma(delta))
 }
 
 integer.base.b <- function(x, b = 2) {
@@ -42,7 +42,7 @@ MakeCompMatrix <- function(p, delta, Y, Nmissing) {
   for (i in 1:(2^p - 1)) {
     inds <- which(bins[i, ] == 1)
     D <- c(apply(Y, inds, sum))
-    alpha <- delta * 2^(p - sum(bins[i, ]))
+    alpha = c(apply(delta, inds, sum))
     compLMLs[i, ] <- CompLogML(D, Nmissing, alpha)
   }
   return(compLMLs)

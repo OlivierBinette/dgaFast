@@ -1,3 +1,5 @@
 .travis.yml
 .github
 figures
+^.*\.Rproj$
+^\.Rproj\.user$

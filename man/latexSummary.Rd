@@ -30,5 +30,8 @@ latexSummary(filepath, weights, N, graphs=NULL, levels=c(0.025, 0.975), nrows = 
 \item{...}{Other parameters passed to xtable::xtable in order to format the table.}
 }
 \description{
-Save summary to LaTeX with plots and graphs
+LaTex plots and summaries. Requires the `graphbox` and `booktabs` packages.
+}
+\note{
+Please include the `graphbox` and `booktabs` packages in your LaTex document.
 }

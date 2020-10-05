@@ -21,11 +21,11 @@ posteriorSummaryTable(weights, N, levels=c(0.025, 0.975), nrows = 10, ndigits=3)
 Dataframe with columns `Model` for the model indices (as rows of the `weights` argument), `Prob.` for the posterior probabilities, `Bayes. est` for the Bayes estimators, `Mode` for the posterior and columns corresponding to posterior quantile levels.
 }
 \description{
-This function computes the population size Bayes estimator, posterior mode and posterior quantiles for models with top posterior probability.
+This function computes the population size Bayes estimator, posterior mode and posterior quantiles for models with top posterior probability. Requires the `graphbox` and `booktabs` LaTeX package.
 }
 \examples{
 delta <- .5
-Y = c(0,27,37,19,4,4,1,1,97,22,37,25,2,1,3,5,83,36,34,18,3,5,0,2,30,5,23,8,0,3,0,2)
+Y <- c(0,27,37,19,4,4,1,1,97,22,37,25,2,1,3,5,83,36,34,18,3,5,0,2,30,5,23,8,0,3,0,2)
 Y <- array(Y, dim=c(2,2,2,2,2))
 Nmissing <- 1:300
 N <- Nmissing + sum(Y)

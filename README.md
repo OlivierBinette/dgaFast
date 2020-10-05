@@ -4,11 +4,11 @@
 [![Build Status](https://travis-ci.com/OlivierBinette/dga.svg?branch=master)](https://travis-ci.com/OlivierBinette/dga)  [![R build status](https://github.com/OlivierBinette/dga/workflows/R-CMD-check/badge.svg)](https://github.com/OlivierBinette/dga/actions) ![Lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 <!-- badges: end -->
 
-Efficient re-implementation of the `dga` package of James Johndrow, Kristian Lum and Patrick Ball (2015): "Performs capture-recapture estimation by averaging over decomposable graphical models. This approach builds on Madigan and York (1997)." 
+Efficient re-implementation and extension of the `dga` package of James Johndrow, Kristian Lum and Patrick Ball (2015): "Performs capture-recapture estimation by averaging over decomposable graphical models. This approach builds on Madigan and York (1997)." 
 
-Higher performance is needed to account for linkage errors through linkage-averaging and for simulation studies.
+- Higher performance is needed to account for linkage errors through linkage-averaging and for simulation studies.
 
-Further plotting and posterior summarization functions have been added (`bayesEstimator`, `posteriorMode`, `posteriorQuantiles`, `posteriorSummaryTable`, `adjMatrix`, `plotGraph`, `htmlSummary`, `latexSummary`).
+- Further plotting and posterior summarization functions have been added (`bayesEstimator`, `posteriorMode`, `posteriorQuantiles`, `posteriorSummaryTable`, `adjMatrix`, `plotGraph`, `htmlSummary`, `latexSummary`).
 
 **Note:** the stratification functions and Venn diagram plotting functions from the `dga` package have not been reproduced in `dgaFast`. They can be accessed through `install.packages("dga"); library(dga)`.
 
@@ -20,15 +20,15 @@ Five lists example from Madigan and York (1997) as implemented in the `dga` pack
 library(dgaFast) # Re-implements library(dga)
 
 # Number of lists and prior hyperparameter
-p = 5
+p <- 5
 data(graphs5) # Decomposable graphical models on 5 lists.
-delta = 0.5
+delta <- 0.5
 Nmissing <- 1:300 # Reasonable range for the number of unobserved individuals.
 
 # Counts corresponding to list inclusion patterns.
-Y = c(0,27,37,19,4,4,1,1,97,22,37,25,2,1,3,5,83,36,34,18,3,5,0,2,30,5,23,8,0,3,0,2)
+Y <- c(0,27,37,19,4,4,1,1,97,22,37,25,2,1,3,5,83,36,34,18,3,5,0,2,30,5,23,8,0,3,0,2)
 Y <- array(Y, dim=c(2,2,2,2,2))
-N = sum(Y) + Nmissing
+N <- sum(Y) + Nmissing
 
 # Model-wise posterior probaiblities on the total population size.
 # weights[i,j] is the posterior probability for j missing individuals under model graphs5[[j]].
