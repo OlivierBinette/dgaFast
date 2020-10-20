@@ -47,3 +47,8 @@ MakeCompMatrix <- function(p, delta, Y, Nmissing) {
   }
   return(compLMLs)
 }
+
+rowApply <- function(data, fun) {
+  apply(data, 1, function(x) fun(as.vector(x)))
+}
+

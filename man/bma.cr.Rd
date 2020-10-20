@@ -4,7 +4,8 @@
 \alias{bma.cr}
 \title{Multiple Systems Estimation Using Decomposable Graphical Models}
 \usage{
-bma.cr(Y, Nmissing, delta, graphs, logprior = NULL, log.prior.model.weights = NULL, alpha=1)
+bma.cr(Y, Nmissing, delta, graphs,
+              logprior = NULL, log.prior.model.weights = NULL, alpha=1)
 }
 \arguments{
 \item{Y}{\code{p}-dimensional array (\code{2^p} elements) of list intersection counts.}

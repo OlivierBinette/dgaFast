@@ -1,3 +1,34 @@
+#' UpSetR plot of MSE data
+#'
+#' @param mse_data todo
+#' @param sets.bar.color todo
+#' @param main.bar.color todo
+#' @param matrix.color todo
+#' @param mainbar.y.label todo
+#' @param sets.x.label todo
+#' @param ... todo
+#'
+#' @export
+plotMSE <- function(mse_data,
+                         sets.bar.color = "cornflowerblue",
+                         main.bar.color = "cornflowerblue",
+                         matrix.color = "cornflowerblue",
+                         mainbar.y.label = "Count",
+                         sets.x.label = "",
+                         ...) {
+  assert(is.MSEdata(mse_data))
+
+  n = length(list.names(mse_data))
+  dat = tidyr::uncount(mse_data[, list.names(mse_data)], mse_data$count)
+  UpSetR::upset(data.frame(dat), nsets=n,
+                sets.bar.color = sets.bar.color,
+                main.bar.color = main.bar.color,
+                matrix.color = matrix.color,
+                mainbar.y.label = mainbar.y.label,
+                sets.x.label = sets.x.label,
+                ...)
+}
+
 #' @export
 plotPosteriorN <- function(weights, N, main = NULL) {
   graphics::plot(N, colSums(weights), type = "l", col = "black", lwd = 3, ylab = "Posterior Probability of N", xlab = "N", ylim = c(0, 1.25 * max(colSums(weights))))

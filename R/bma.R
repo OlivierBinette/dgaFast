@@ -2,7 +2,8 @@
 #'
 #' @description Compute population size posterior distributions for decomposable graphical models.
 #'
-#' @usage bma.cr(Y, Nmissing, delta, graphs, logprior = NULL, log.prior.model.weights = NULL, alpha=1)
+#' @usage bma.cr(Y, Nmissing, delta, graphs,
+#'               logprior = NULL, log.prior.model.weights = NULL, alpha=1)
 #'
 #' @param Y \code{p}-dimensional array (\code{2^p} elements) of list intersection counts.
 #' @param Nmissing Vector of all possible values for the number of individuals that appear on no list.
@@ -49,6 +50,30 @@
 #'
 #' @export
 bma.cr <- function(Y, Nmissing, delta, graphs,
+                   logprior = NULL,
+                   log.prior.model.weights = NULL,
+                   alpha=1) {
+  UseMethod("bma.cr", Y)
+}
+
+#' @export
+bma.cr.MSEdata <- function(Y, Nmissing, delta, graphs,
+                           logprior = NULL,
+                           log.prior.model.weights = NULL,
+                           alpha=1) {
+  MSEdat = Y
+  Y = MSEdat[,rev(which(colnames(MSEdat)!="count"))]
+  o = order(rowApply(Y, function(x) paste0(x, collapse="")))
+  Y = array(c(0, MSEdat[o, "count"]), dim=rep(2, times=ncol(MSEdat)-1))
+
+  bma.cr.array(Y, Nmissing, delta, graphs,
+         logprior = logprior,
+         log.prior.model.weights = log.prior.model.weights,
+         alpha=alpha)
+}
+
+#' @export
+bma.cr.array <- function(Y, Nmissing, delta, graphs,
                    logprior = NULL,
                    log.prior.model.weights = NULL,
                    alpha=1) {

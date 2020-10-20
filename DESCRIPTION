@@ -13,7 +13,7 @@ Authors@R: c(person(given = "Olivier",
                  role = c("aut", "fnd"))
                  )
 License: GPL (>= 2)
-LazyLoad: yes
+LazyLoad: no
 Imports: 
     rlang,
     graphics,
@@ -21,7 +21,11 @@ Imports:
     xtable,
     qgraph,
     grDevices,
-    tikzDevice
+    tikzDevice,
+    UpSetR,
+    dplyr,
+    purrr,
+    tidyr
 Suggests:
     dga
 NeedsCompilation: yes
